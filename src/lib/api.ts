@@ -1,9 +1,9 @@
 // src/lib/api.ts
-// 🔌 서버에서 데이터를 가져오는 함수들 (가짜로 만든 것)
+// 서버에서 데이터를 가져오는 함수들 (가짜로 만든 것)
 
 import { Card } from "@/types";
 
-// 💳 사용자의 카드 목록을 가져오는 함수 (가짜)
+// 사용자의 카드 목록을 가져오는 함수 (가짜)
 export const fetchUserCards = async (): Promise<Card[]> => {
   // 실제로는 서버에서 가져오지만, 지금은 가짜 데이터로 테스트해요
 
@@ -37,7 +37,7 @@ export const fetchUserCards = async (): Promise<Card[]> => {
   return cards;
 };
 
-// 💸 결제를 처리하는 함수 (가짜)
+// 결제를 처리하는 함수 (가짜)
 export const processPayment = async (
   cardId: number,
   amount: number

@@ -1,5 +1,5 @@
 // src/components/PaymentStep3.tsx
-// ✅ 3단계: 결제 완료 화면 (토스 스타일 성공 애니메이션)
+// 3단계: 결제 완료 화면 (토스 스타일 성공 애니메이션)
 
 "use client";
 
@@ -22,11 +22,11 @@ export const PaymentStep3 = () => {
   } = usePayment();
   const [countedAmount, setCountedAmount] = useState(0); // 카운터 애니메이션용
 
-  // 📍 애니메이션 요소들 참조
+  // 애니메이션 요소들 참조
   const checkmarkRef = useRef<HTMLDivElement>(null);
   const counterRef = useRef<HTMLDivElement>(null);
 
-  // 💸 실제 결제 처리 (React Query mutation)
+  // 실제 결제 처리 (React Query mutation)
   const paymentMutation = useMutation({
     mutationFn: () => processPayment(selectedCard!.id, amount),
     onSuccess: () => {
@@ -42,7 +42,7 @@ export const PaymentStep3 = () => {
 
   // 🎬 성공 애니메이션들을 시작하는 함수
   const startSuccessAnimations = () => {
-    // ✅ 체크마크 애니메이션
+    // 체크마크 애니메이션
     if (checkmarkRef.current) {
       gsap.fromTo(
         checkmarkRef.current,
@@ -56,7 +56,7 @@ export const PaymentStep3 = () => {
       );
     }
 
-    // 🔢 숫자 카운터 애니메이션 (0에서 실제 금액까지)
+    // 숫자 카운터 애니메이션 (0에서 실제 금액까지)
     gsap.fromTo(
       counterRef.current,
       { textContent: 0 },
@@ -72,7 +72,7 @@ export const PaymentStep3 = () => {
       }
     );
 
-    // 🎉 화면 전체에 축하 효과 (간단한 색상 변화)
+    // 화면 전체에 축하 효과 (간단한 색상 변화)
     gsap.to(document.body, {
       backgroundColor: "#f0f9ff", // 연한 파란색으로 변경
       duration: 0.5,
@@ -81,14 +81,14 @@ export const PaymentStep3 = () => {
     });
   };
 
-  // 🏁 컴포넌트가 로드되면 결제 시작
+  // 컴포넌트가 로드되면 결제 시작
   useEffect(() => {
     if (selectedCard && amount > 0) {
       paymentMutation.mutate(); // 결제 API 호출
     }
   }, []);
 
-  // ⏳ 로딩 중일 때 보여줄 화면
+  // 로딩 중일 때 보여줄 화면
   if (isLoading || paymentMutation.isPending) {
     return (
       <div className="max-w-md mx-auto p-6 text-center">
@@ -140,7 +140,7 @@ export const PaymentStep3 = () => {
     );
   }
 
-  // ✅ 결제 완료 화면
+  // 결제 완료 화면
   return (
     <div className="max-w-md mx-auto p-6 text-center">
       <motion.div
@@ -148,7 +148,7 @@ export const PaymentStep3 = () => {
         animate={{ scale: 1, opacity: 1 }}
         transition={{ duration: 0.5 }}
       >
-        {/* ✅ 체크마크 */}
+        {/* 체크마크 */}
         <div
           ref={checkmarkRef}
           className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
@@ -173,7 +173,7 @@ export const PaymentStep3 = () => {
           </motion.svg>
         </div>
 
-        {/* 🎉 성공 메시지 */}
+        {/* 성공 메시지 */}
         <motion.h2
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -192,7 +192,7 @@ export const PaymentStep3 = () => {
           결제가 성공적으로 완료되었습니다
         </motion.p>
 
-        {/* 💰 결제 금액 (카운터 애니메이션) */}
+        {/* 결제 금액 (카운터 애니메이션) */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -205,7 +205,7 @@ export const PaymentStep3 = () => {
           </div>
         </motion.div>
 
-        {/* 📋 결제 정보 요약 */}
+        {/* 결제 정보 요약 */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -228,7 +228,7 @@ export const PaymentStep3 = () => {
           </div>
         </motion.div>
 
-        {/* 🔄 다시 결제하기 버튼 */}
+        {/* 다시 결제하기 버튼 */}
         <motion.div
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}

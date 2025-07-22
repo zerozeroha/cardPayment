@@ -30,12 +30,12 @@ export default function RootLayout({
   return (
     <html lang="ko" className={inter.className}>
       <head>
-        {/* 📱 PWA 관련 메타태그 */}
+        {/* PWA 관련 메타태그 */}
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="토스 결제" />
 
-        {/* 🎨 파비콘 */}
+        {/* 파비콘 */}
         <link rel="icon" href="/favicon.ico" />
 
         {/* ⚡ 성능 최적화 */}
@@ -49,10 +49,10 @@ export default function RootLayout({
           text-gray-900
           overflow-x-hidden
         `}
-        // 🖱️ 기본 커서 숨기기 (커스텀 커서 사용)
-        style={{ cursor: "none" }}
+        // 기본 커서 숨기기 (커스텀 커서 사용)
+        // style={{ cursor: "none" }}
       >
-        {/* 🎯 실제 앱 콘텐츠 */}
+        {/* 실제 앱 콘텐츠 */}
         {children}
 
         {/* 🛠️ 개발 환경에서만 보이는 정보 */}

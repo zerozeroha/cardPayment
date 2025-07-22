@@ -1,5 +1,5 @@
 // src/components/PaymentStep1.tsx
-// 💳 1단계: 카드 선택 화면 (토스 스타일 인터랙티브 효과)
+// 1단계: 카드 선택 화면 (토스 스타일 인터랙티브 효과)
 
 "use client";
 
@@ -14,13 +14,13 @@ import { Card, CardContent } from "@/components/ui/card";
 export const PaymentStep1 = () => {
   const { selectedCard, selectCard, nextStep } = usePayment();
 
-  // 🔌 React Query로 카드 목록 가져오기
+  // React Query로 카드 목록 가져오기
   const { data: cards, isLoading } = useQuery({
     queryKey: ["userCards"], // 캐시 키
     queryFn: fetchUserCards, // 실제 데이터 가져오는 함수
   });
 
-  // ⏳ 로딩 중일 때 보여줄 화면
+  // 로딩 중일 때 보여줄 화면
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
@@ -36,7 +36,7 @@ export const PaymentStep1 = () => {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      {/* 📋 제목 */}
+      {/* 제목 */}
       <motion.div
         initial={{ y: -20, opacity: 0 }} // 위에서 아래로 나타나기
         animate={{ y: 0, opacity: 1 }}
@@ -49,7 +49,7 @@ export const PaymentStep1 = () => {
         <p className="text-gray-600">카드를 클릭하면 선택됩니다</p>
       </motion.div>
 
-      {/* 💳 카드 목록 */}
+      {/* 카드 목록 */}
       <div className="space-y-4 mb-8">
         {cards?.map((card: CardType, index: number) => (
           <motion.div
@@ -122,7 +122,7 @@ export const PaymentStep1 = () => {
         ))}
       </div>
 
-      {/* ➡️ 다음 버튼 */}
+      {/* 다음 버튼 */}
       <motion.div
         initial={{ y: 20, opacity: 0 }} // 아래에서 위로 나타나기
         animate={{ y: 0, opacity: 1 }}

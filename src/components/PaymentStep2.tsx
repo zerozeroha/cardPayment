@@ -15,10 +15,10 @@ export const PaymentStep2 = () => {
     usePayment();
   const [displayAmount, setDisplayAmount] = useState("0");
 
-  // 💰 금액 표시 요소 참조 (GSAP 애니메이션용)
+  // 금액 표시 요소 참조 (GSAP 애니메이션용)
   const amountRef = useRef<HTMLDivElement>(null);
 
-  // 🔢 숫자 버튼 클릭 시 실행되는 함수
+  // 숫자 버튼 클릭 시 실행되는 함수
   const handleNumberClick = (num: string) => {
     let newAmount = displayAmount;
 
@@ -31,7 +31,7 @@ export const PaymentStep2 = () => {
     setDisplayAmount(newAmount); // 화면에 보이는 금액 업데이트
     setAmount(parseInt(newAmount)); // 실제 상태 업데이트
 
-    // ✨ GSAP으로 숫자가 변할 때 살짝 커지는 효과
+    // GSAP으로 숫자가 변할 때 살짝 커지는 효과
     if (amountRef.current) {
       gsap.fromTo(
         amountRef.current,
@@ -41,26 +41,26 @@ export const PaymentStep2 = () => {
     }
   };
 
-  // ⌫ 백스페이스 버튼 클릭 시 실행되는 함수
+  // 백스페이스 버튼 클릭 시 실행되는 함수
   const handleBackspace = () => {
     const newAmount = displayAmount.slice(0, -1) || "0"; // 마지막 글자 제거
     setDisplayAmount(newAmount);
     setAmount(parseInt(newAmount) || 0);
   };
 
-  // 💸 결제 진행 함수
+  // 결제 진행 함수
   const handlePayment = () => {
     console.log("💸 결제 시작!");
     setLoading(true); // 로딩 시작
     nextStep(); // 다음 단계로 이동
   };
 
-  // 💰 금액을 천 단위로 포맷하는 함수 (1000 → 1,000)
+  // 금액을 천 단위로 포맷하는 함수 (1000 → 1,000)
   const formatAmount = (amount: string) => {
     return parseInt(amount).toLocaleString("ko-KR");
   };
 
-  // 🔢 숫자 버튼 컴포넌트
+  // 숫자 버튼 컴포넌트
   const NumberButton = ({
     number,
     onClick,
@@ -87,7 +87,7 @@ export const PaymentStep2 = () => {
 
   return (
     <div className="max-w-md mx-auto p-6">
-      {/* 🔙 뒤로가기 버튼 */}
+      {/* 뒤로가기 버튼 */}
       <motion.div
         initial={{ x: -20, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
@@ -102,7 +102,7 @@ export const PaymentStep2 = () => {
         </Button>
       </motion.div>
 
-      {/* 📋 제목 */}
+      {/* 제목 */}
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -115,7 +115,7 @@ export const PaymentStep2 = () => {
         <p className="text-gray-600">{selectedCard?.name}로 결제합니다</p>
       </motion.div>
 
-      {/* 💰 금액 표시 */}
+      {/* 금액 표시 */}
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -128,7 +128,7 @@ export const PaymentStep2 = () => {
         <div className="text-gray-500">원</div>
       </motion.div>
 
-      {/* 🔢 숫자 키패드 */}
+      {/* 숫자 키패드 */}
       <motion.div
         initial={{ y: 50, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -169,7 +169,7 @@ export const PaymentStep2 = () => {
         </motion.button>
       </motion.div>
 
-      {/* 💸 빠른 금액 선택 버튼들 */}
+      {/* 빠른 금액 선택 버튼들 */}
       <motion.div
         initial={{ y: 30, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -197,7 +197,7 @@ export const PaymentStep2 = () => {
         ))}
       </motion.div>
 
-      {/* ✅ 결제하기 버튼 */}
+      {/* 결제하기 버튼 */}
       <motion.div
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
