@@ -1,0 +1,330 @@
+/* src/app/globals.css */
+/* 🎨 전역 스타일 - 토스 디자인 시스템 */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 🎯 기본 스타일 설정 */
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+  }
+}
+
+@layer base {
+  html {
+    /* 📱 모바일 최적화 */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    /* 부드러운 스크롤 */
+    scroll-behavior: smooth;
+  }
+
+  body {
+    /* 폰트 렌더링 최적화 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+
+    /* 🖱️ 터치 최적화 */
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
+
+    /* 🎨 기본 배경색 */
+    background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%);
+    min-height: 100vh;
+  }
+
+  /* ⚡ 모든 요소 하드웨어 가속 활성화 */
+  * {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  /* 🎯 포커스 스타일 개선 (접근성) */
+  *:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px #3b82f6;
+    border-radius: 8px;
+  }
+}
+
+/* 🎨 커스텀 컴포넌트 스타일 */
+@layer components {
+
+  /* 💳 토스 스타일 카드 */
+  .toss-card {
+    @apply bg-white rounded-2xl shadow-lg border border-gray-100 p-6;
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .toss-card:hover {
+    @apply shadow-xl;
+    transform: translateY(-4px);
+  }
+
+  /* 🔘 토스 스타일 버튼 */
+  .toss-button {
+    @apply px-6 py-3 rounded-xl font-semibold text-center transition-all duration-200;
+    /* 터치 타겟 최소 크기 보장 */
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  .toss-button-primary {
+    @apply bg-blue-500 text-white hover: bg-blue-600 active:bg-blue-700;
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+  }
+
+  .toss-button-primary:hover {
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+    transform: translateY(-1px);
+  }
+
+  .toss-button-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.39);
+  }
+
+  /* 🔢 숫자 키패드 버튼 */
+  .number-button {
+    @apply aspect-square bg-white rounded-2xl shadow-sm border border-gray-100;
+    @apply text-2xl font-semibold text-gray-800 transition-all duration-150;
+    @apply hover: bg-gray-50 active:bg-gray-100 hover:shadow-md;
+
+    /* 터치 반응성 개선 */
+    -webkit-tap-highlight-color: rgba(59, 130, 246, 0.1);
+  }
+
+  .number-button:hover {
+    transform: translateY(-2px);
+  }
+
+  .number-button:active {
+    transform: translateY(0);
+  }
+
+  /* 🌟 글로우 효과 */
+  .glow-effect {
+    position: relative;
+  }
+
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, #3b82f6, #8b5cf6, #06b6d4, #3b82f6);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .glow-effect:hover::before {
+    opacity: 0.7;
+    animation: glow-rotate 2s linear infinite;
+  }
+
+  @keyframes glow-rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+/* 🎭 유틸리티 클래스 */
+@layer utilities {
+
+  /* 🖱️ 마우스 커서 관련 */
+  .cursor-custom {
+    cursor: none;
+  }
+
+  /* 📱 스크롤바 숨김 */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ⚡ GPU 가속 */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* 🎨 그라데이션 텍스트 */
+  .gradient-text {
+    background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* 🌊 물결 애니메이션 */
+  .wave {
+    animation: wave 2s ease-in-out infinite;
+  }
+
+  @keyframes wave {
+
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* ✨ 반짝 효과 */
+  .sparkle {
+    animation: sparkle 1.5s ease-in-out infinite alternate;
+  }
+
+  @keyframes sparkle {
+    0% {
+      opacity: 0.5;
+      transform: scale(0.8);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* 🎯 페이드인 애니메이션 */
+  .fade-in {
+    animation: fadeIn 0.5s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 📊 카운터 숫자 스타일 */
+  .counter-number {
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: 'tnum';
+  }
+}
+
+/* 🌙 다크모드 지원 (추후 확장) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f172a;
+    --foreground: #f8fafc;
+  }
+}
+
+/* ♿ 접근성: 애니메이션 줄임 설정 */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* 📱 모바일 전용 스타일 */
+@media (max-width: 768px) {
+
+  /* 터치 디바이스에서 커스텀 커서 숨김 */
+  body {
+    cursor: auto !important;
+  }
+
+  /* 모바일에서 호버 효과 제거 */
+  .toss-card:hover {
+    transform: none;
+  }
+
+  .number-button:hover {
+    transform: none;
+  }
+}
+
+/* 🖥️ 데스크톱 전용 스타일 */
+@media (min-width: 769px) {
+
+  /* 데스크톱에서만 커스텀 커서 활성화 */
+  body {
+    cursor: none;
+  }
+}
+
+/* 🎨 커스텀 스크롤바 (웹킷 브라우저) */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* 🎭 로딩 스피너 */
+.loading-spinner {
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
