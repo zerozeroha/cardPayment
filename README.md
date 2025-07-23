@@ -6,9 +6,7 @@
 
 프로젝트의 실제 동작 모습입니다.
 
-![데모 영상](public/demo.gif)
-
-<img src="public/demo.gif" alt="프로젝트 데모 영상" width="500" />
+<img src="public/demo.gif" alt="프로젝트 데모 영상" width="300" />
 
 ## 주요 기능
 
