@@ -6,9 +6,7 @@
 
 프로젝트의 실제 동작 모습입니다.
 
-![프로젝트 데모 영상](/Users/kimhayoung/Desktop/toss-payment-demo/src/app/화면 기록 2025-07-24 오전 4.30.54.mov)
-
-> **참고**: 위 이미지 링크의 `여기에_영상_URL을_입력하세요.gif` 부분을 실제 녹화한 영상(또는 GIF) 파일의 경로로 수정해야 합니다.
+![프로젝트 데모 영상]/Users/kimhayoung/Desktop/toss-payment-demo/src/app/녹화본.gif
 
 ## 주요 기능
 
