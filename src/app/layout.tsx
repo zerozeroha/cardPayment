@@ -1,17 +1,17 @@
 // src/app/layout.tsx
-// 🏗️ 전체 앱 레이아웃 (모든 페이지에 공통으로 적용)
+//  전체 앱 레이아웃 (모든 페이지에 공통으로 적용)
 
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
-// 📝 폰트 설정 (구글 폰트)
+//  폰트 설정 (구글 폰트)
 const inter = Inter({
   subsets: ["latin"],
   display: "swap", // 폰트 로딩 최적화
 });
 
-// 🔍 SEO 메타데이터 설정
+// SEO 메타데이터 설정
 export const metadata: Metadata = {
   title: "토스 인터랙티브 결제 데모",
   description: "토스 스타일의 인터랙티브 결제 시스템",
@@ -55,10 +55,10 @@ export default function RootLayout({
         {/* 실제 앱 콘텐츠 */}
         {children}
 
-        {/* 🛠️ 개발 환경에서만 보이는 정보 */}
+        {/* 개발 환경에서만 보이는 정보 */}
         {process.env.NODE_ENV === "development" && (
           <div className="fixed top-4 left-4 bg-black text-white text-xs px-2 py-1 rounded opacity-50 pointer-events-none z-50">
-            DEV
+            dev.hayoung
           </div>
         )}
       </body>

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 🧱 base 레이어: 브라우저 기본 스타일 커스텀 */
+/* base 레이어: 브라우저 기본 스타일 커스텀 */
 @layer base {
   html {
     -webkit-text-size-adjust: 100%;
@@ -26,7 +26,7 @@
   }
 }
 
-/* 🎨 components 레이어: 커스텀 UI 구성요소 */
+/* components 레이어: 커스텀 UI 구성요소 */
 @layer components {
 
   /* 카드 기본 스타일 */

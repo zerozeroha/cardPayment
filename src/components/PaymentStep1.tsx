@@ -7,6 +7,7 @@ import { Card as CardType } from "@/types";
 import { fetchUserCards } from "@/lib/api";
 import { usePayment } from "@/hooks/usePayment";
 
+// 스켈레톤 UI (로딩 중 표시)
 const CardSkeleton = () => (
   <div className="custom-card p-6">
     <div className="flex items-center justify-between">
@@ -35,6 +36,13 @@ export const PaymentStep1 = () => {
     queryKey: ["userCards"],
     queryFn: fetchUserCards,
   });
+
+  // [수정됨] 카드 색상을 Tailwind CSS 클래스에 매핑
+  const cardColor: { [key: string]: string } = {
+    blue: "bg-blue-500",
+    black: "bg-gray-800",
+    purple: "bg-purple-500",
+  };
 
   return (
     <div className="p-6">
@@ -76,8 +84,11 @@ export const PaymentStep1 = () => {
                         {card.number}
                       </p>
                     </div>
+                    {/* [수정됨] 매핑된 색상 클래스 사용 */}
                     <div
-                      className={`w-16 h-10 rounded-lg bg-${card.color}-500`}
+                      className={`w-16 h-10 rounded-lg ${
+                        cardColor[card.color]
+                      }`}
                     />
                   </div>
                 </div>
