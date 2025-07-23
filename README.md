@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 토스 스타일 결제 UI 프로토타입
 
-## Getting Started
+이 프로젝트는 토스(Toss)의 간결하고 사용자 친화적인 인터페이스에서 영감을 받아 제작된 다단계 결제 흐름 UI 프로토타입입니다. Next.js와 TypeScript를 기반으로 하여 타입 안정성을 높이고, Tailwind CSS를 통해 빠르고 효율적인 스타일링을 구현했습니다.
 
-First, run the development server:
+## 데모 영상
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+프로젝트의 실제 동작 모습입니다.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![프로젝트 데모 영상](/Users/kimhayoung/Desktop/toss-payment-demo/src/app/화면 기록 2025-07-24 오전 4.30.54.mov)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+> **참고**: 위 이미지 링크의 `여기에_영상_URL을_입력하세요.gif` 부분을 실제 녹화한 영상(또는 GIF) 파일의 경로로 수정해야 합니다.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 주요 기능
 
-## Learn More
+- **다단계 결제 프로세스**: '카드 선택' → '금액 입력' → '결제 완료'로 이어지는 직관적인 3단계 UI를 제공합니다.
+- **인터랙티브 애니메이션**: `Framer Motion`과 `GSAP`를 활용하여 컴포넌트 전환 및 사용자 상호작용 시 부드럽고 만족스러운 애니메이션 효과를 구현했습니다.
+- **동적 상태 관리**: `Jotai`를 사용하여 결제 단계, 선택된 카드, 금액 등 복잡한 상태를 효율적으로 관리합니다.
+- **반응형 디자인**: 모바일 화면에 최적화된 레이아웃을 제공하여 다양한 디바이스에서 일관된 사용자 경험을 보장합니다.
+- **재사용 가능한 컴포넌트**: 각 결제 단계를 모듈화된 컴포넌트로 분리하여 코드의 재사용성과 유지보수성을 높였습니다.
 
-To learn more about Next.js, take a look at the following resources:
+## 기술 스택
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **프레임워크**: Next.js
+- **언어**: TypeScript
+- **스타일링**: Tailwind CSS
+- **상태 관리**: Jotai
+- **데이터 페칭**: TanStack Query (React Query)
+- **애니메이션**: Framer Motion, GSAP
+- **아이콘**: lucide-react
