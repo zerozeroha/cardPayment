@@ -1,4 +1,3 @@
-// src/components/PaymentStep2.tsx
 "use client";
 
 import { useState, useRef, JSX } from "react";

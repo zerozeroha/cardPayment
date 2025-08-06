@@ -1,7 +1,6 @@
-// src/components/PaymentStep3.tsx
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect} from "react";
 import { motion } from "framer-motion";
 import { useMutation } from "@tanstack/react-query";
 import { usePayment } from "@/hooks/usePayment";
@@ -10,6 +9,17 @@ import { Check } from "lucide-react";
 
 export const PaymentStep3 = () => {
   const { selectedCard, amount, completePayment, reset } = usePayment();
+
+  // useMutation
+  // : 서버의 데이터를 생성(Create), 수정(Update), 삭제(Delete)하는 비동기 작업을 관리하는 훅
+  // 로딩, 성공, 실패 상태와 함께 해당 작업을 실행하는 mutate 함수를 제공하여 UI 및 부수 효과 처리를 용이하게 함.
+
+  // mutate : 함수 - 이 함수를 호출하면 서버에 데이터 변경을 요청
+  // isPending : 상태 - mutate 호출 후, 아직 서버 응답을 기다리는 중인 상태 (로딩 중)
+  // isSuccess : 상태 - 요청이 성공했을 때 true가 되는 상태
+  // isError : 상태 - 요청이 실패했을 때 true가 되는 상태
+  // error : 값 - 요청 실패 시, 에러 객체가 여기에 담김
+  // isIdle : 상태 - mutate가 아직 한 번도 호출되지 않은 초기 대기 상태
 
   const paymentMutation = useMutation({
     mutationFn: () => processPayment(selectedCard!.id, amount),

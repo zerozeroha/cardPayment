@@ -1,12 +1,9 @@
-// src/types/index.ts
-// 우리가 사용할 데이터 타입들을 정의해요 (초보자용으로 아주 간단하게!)
-
 // 카드 정보 타입
 export interface Card {
   id: number; // 카드 고유 번호 (1, 2, 3...)
   name: string; // 카드 이름 ("토스뱅크 카드")
   number: string; // 카드 번호 ("**** **** **** 1234")
-  color: string; // 카드 색깔 ("blue", "black", "purple")
+  color: string; // 카드 색깔 
   balance: number; // 잔액 (1000000 = 100만원)
 }
 

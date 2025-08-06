@@ -1,4 +1,3 @@
-// src/components/PaymentStep1.tsx
 "use client";
 
 import { motion } from "framer-motion";
@@ -6,28 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Card as CardType } from "@/types";
 import { fetchUserCards } from "@/lib/api";
 import { usePayment } from "@/hooks/usePayment";
-
-// 스켈레톤 UI (로딩 중 표시)
-const CardSkeleton = () => (
-  <div className="custom-card p-6">
-    <div className="flex items-center justify-between">
-      <div className="space-y-2">
-        <div
-          className="h-5 w-32 bg-gray-200 rounded animate-shimmer bg-gradient-shimmer bg-no-repeat"
-          style={{ backgroundSize: "1000px 100%" }}
-        />
-        <div
-          className="h-4 w-40 bg-gray-200 rounded animate-shimmer bg-gradient-shimmer bg-no-repeat"
-          style={{ backgroundSize: "1000px 100%" }}
-        />
-      </div>
-      <div
-        className="w-16 h-10 rounded-lg bg-gray-200 animate-shimmer bg-gradient-shimmer bg-no-repeat"
-        style={{ backgroundSize: "1000px 100%" }}
-      />
-    </div>
-  </div>
-);
+import CardSkeleton from "@/components/ui/skeleton";
 
 export const PaymentStep1 = () => {
   const { selectedCard, selectCard, nextStep } = usePayment();
@@ -37,11 +15,20 @@ export const PaymentStep1 = () => {
     queryFn: fetchUserCards,
   });
 
-  // [수정됨] 카드 색상을 Tailwind CSS 클래스에 매핑
-  const cardColor: { [key: string]: string } = {
-    blue: "bg-blue-500",
-    black: "bg-gray-800",
-    purple: "bg-purple-500",
+  // [수정됨] 그라데이션, 로고 색상 등을 포함하도록 객체 확장
+  const cardStyles: { [key: string]: { gradient: string; logo: string } } = {
+    blue: {
+      gradient: "from-blue-500 to-blue-700",
+      logo: "text-white",
+    },
+    black: {
+      gradient: "from-gray-800 to-black",
+      logo: "text-gray-400",
+    },
+    purple: {
+      gradient: "from-purple-500 to-purple-700",
+      logo: "text-white",
+    },
   };
 
   return (
@@ -84,12 +71,18 @@ export const PaymentStep1 = () => {
                         {card.number}
                       </p>
                     </div>
-                    {/* [수정됨] 매핑된 색상 클래스 사용 */}
                     <div
-                      className={`w-16 h-10 rounded-lg ${
-                        cardColor[card.color]
+                      className={`relative w-16 h-10 rounded-lg flex flex-col justify-between p-1.5 shadow-md bg-gradient-to-br ${
+                        cardStyles[card.color]?.gradient || "from-gray-500 to-gray-700"
                       }`}
-                    />
+                    >
+                      <div className="w-2 h-1.5 bg-gradient-to-br from-yellow-200 to-yellow-400 rounded-sm"></div>
+
+                      <div className={`w-6 h-4 self-end flex ${cardStyles[card.color]?.logo || "text-white"}`}>
+                        <div className="w-4 h-4 rounded-full bg-current opacity-50"></div>
+                        <div className="w-4 h-4 rounded-full bg-current opacity-50 -ml-2"></div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
