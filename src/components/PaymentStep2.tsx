@@ -1,29 +1,17 @@
 "use client";
 
-import { useRef, useEffect, JSX } from "react";
+import { useRef, useEffect } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { usePayment } from "@/hooks/usePayment";
 import { ArrowLeft, Delete } from "lucide-react";
-
-// 숫자 버튼 UI를 위한 재사용 컴포넌트
-const NumberButton = ({ number, onClick }: { number: string | JSX.Element; onClick: () => void; }) => (
-  <motion.button
-    whileTap={{ scale: 0.95, backgroundColor: "#F2F4F6" }}
-    onClick={onClick}
-    className="flex items-center justify-center aspect-square text-3xl font-medium text-toss-gray-800 rounded-2xl"
-  >
-    {number}
-  </motion.button>
-);
+import NumberButton from "./ui/NumberButton";
 
 export const PaymentStep2 = () => {
   const { selectedCard, amount, setAmount, nextStep, prevStep } = usePayment();
   const amountRef = useRef<HTMLDivElement>(null);
 
-  // --- 로직: 금액 변경 ---
-
-  // [리팩토링] 숫자 및 빠른 금액 버튼의 '덧셈' 로직을 하나로 통합
+  // 숫자 및 빠른 금액 버튼의 '덧셈' 로직을 하나로 통합
   const addAmount = (amountToAdd: number) => {
     setAmount((prevAmount) => prevAmount + amountToAdd);
   };
@@ -34,8 +22,6 @@ export const PaymentStep2 = () => {
     setAmount(parseInt(newAmountStr, 10));
   };
 
-  // --- 부가 효과: 애니메이션 ---
-
   useEffect(() => {
     if (amountRef.current) {
       gsap.fromTo(
@@ -45,8 +31,6 @@ export const PaymentStep2 = () => {
       );
     }
   }, [amount]);
-
-  // --- UI 렌더링 ---
 
   return (
     <div className="p-4 flex flex-col justify-between min-h-[calc(100vh-5rem)]">
@@ -85,7 +69,7 @@ export const PaymentStep2 = () => {
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 0].map((num) => (
             <NumberButton key={num} number={String(num)} onClick={() => addAmount(num)} />
           ))}
-          <div /> {/* 빈 공간 */}
+          <div />
           <NumberButton number={<Delete size={28} />} onClick={handleBackspace} />
         </div>
 
