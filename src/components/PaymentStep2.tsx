@@ -22,26 +22,29 @@ export const PaymentStep2 = () => {
     }
   }, [amount]);
 
-  const handleKeyPress = (key: string) => {
-    if (key === "backspace") {
-      const amountStr = amount.toString();
-      const newAmountStr = amountStr.slice(0, -1) || "0";
-      setAmount(parseInt(newAmountStr, 10));
-    } else {
-      const currentAmountStr = amount.toString();
-      if (currentAmountStr.length >= 10) return;
-
-      const newAmountStr = currentAmountStr === "0" ? key : currentAmountStr + key;
-      setAmount(parseInt(newAmountStr, 10));
-    }
+  /**
+   * [수정됨] 숫자 키패드 핸들러: 항상 현재 금액에 숫자를 더합니다. (2 + 2 = 4)
+   */
+  const handleNumberAdd = (num: number) => {
+    setAmount((prevAmount) => prevAmount + num);
   };
 
-  // [수정됨] 빠른 금액 추가
+  /**
+   * 지우기 버튼 핸들러: 마지막 한 자리를 지웁니다.
+   */
+  const handleBackspace = () => {
+    const newAmountStr = amount.toString().slice(0, -1) || "0";
+    setAmount(parseInt(newAmountStr, 10));
+  };
+
+  /**
+   * 빠른 금액 버튼 핸들러: 항상 현재 금액에 더합니다.
+   */
   const handleQuickAmount = (quickAmount: number) => {
-    const newTotal = amount + quickAmount;
-    setAmount(Math.min(newTotal, 9999999999));
+    setAmount((prevAmount) => prevAmount + quickAmount);
   };
 
+  // 숫자 버튼 UI 컴포넌트
   const NumberButton = ({ number, onClick }: { number: string | JSX.Element; onClick: () => void; }) => (
     <motion.button
       whileTap={{ scale: 0.95, backgroundColor: "#F2F4F6" }}
@@ -80,12 +83,12 @@ export const PaymentStep2 = () => {
           ))}
         </div>
         <div className="grid grid-cols-3 gap-2 mb-4">
-          {"123456789".split("").map((num) => (
-            <NumberButton key={num} number={num} onClick={() => handleKeyPress(num)} />
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+            <NumberButton key={num} number={String(num)} onClick={() => handleNumberAdd(num)} />
           ))}
           <div />
-          <NumberButton number="0" onClick={() => handleKeyPress("0")} />
-          <NumberButton number={<Delete size={28} />} onClick={() => handleKeyPress("backspace")} />
+          <NumberButton number="0" onClick={() => handleNumberAdd(0)} />
+          <NumberButton number={<Delete size={28} />} onClick={handleBackspace} />
         </div>
         <button onClick={nextStep} disabled={amount === 0} className="custom-button bg-toss-blue text-white">
           {amount > 0 ? `${amount.toLocaleString()}원 결제하기` : "금액을 입력하세요"}
