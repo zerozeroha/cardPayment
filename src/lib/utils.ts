@@ -1,6 +1,3 @@
-// src/lib/utils.ts
-// 🛠️ Shadcn/ui에서 사용하는 유틸리티 함수들
-
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
